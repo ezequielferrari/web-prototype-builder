@@ -1,0 +1,47 @@
+@import "tailwindcss" source("../src");
+
+/* Paleta tomada del logo de Panka */
+@theme {
+  --color-ink: #1b2a5c;          /* azul profundo del logo, para textos */
+  --color-ink-soft: #5b6688;
+  --color-paper: #fffaf3;        /* fondo crema cálido */
+  --color-line: #ece4d8;
+
+  --color-grape: #8b5cf6;        /* violeta (primario) */
+  --color-grape-dark: #6d3fe0;
+  --color-grape-soft: #f1eaff;
+  --color-coral: #ff6b5b;
+  --color-coral-soft: #ffece9;
+  --color-sun: #fbb424;
+  --color-sun-soft: #fff4d9;
+  --color-mint: #1fb58f;
+  --color-mint-soft: #e2f7f0;
+  --color-sky: #3b9df5;
+  --color-sky-soft: #e5f2ff;
+
+  --font-sans: "Nunito", system-ui, sans-serif;
+  /* Andika está diseñada para lectores que recién empiezan */
+  --font-read: "Andika", "Nunito", system-ui, sans-serif;
+}
+
+@layer base {
+  html, body, #root { min-height: 100%; }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  :focus-visible { outline: 3px solid var(--color-grape); outline-offset: 2px; }
+}
+
+/* Texto para leer: respeta la preferencia de MAYÚSCULAS / minúsculas */
+.read-text { font-family: var(--font-read); letter-spacing: 0.01em; }
+.case-upper .read-text { text-transform: uppercase; letter-spacing: 0.04em; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
